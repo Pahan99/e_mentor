@@ -1,0 +1,106 @@
+CREATE TABLE `members` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` varchar(255) NOT NULL,
+	`role_id` INT NOT NULL,
+	`email` varchar(255) NOT NULL UNIQUE,
+	`status` INT(1) NOT NULL,
+	`account_detail_id` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `roles` (
+	`id` INT(1) NOT NULL AUTO_INCREMENT UNIQUE,
+	`role` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `user_status` (
+	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`status` varchar(255) NOT NULL UNIQUE,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `auth` (
+	`member_id` INT NOT NULL UNIQUE,
+	`password` varchar(50) NOT NULL,
+	`verification` varchar(255) NOT NULL UNIQUE,
+	PRIMARY KEY (`member_id`)
+);
+
+CREATE TABLE `sessions` (
+	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`counsellor_id` INT NOT NULL UNIQUE,
+	`start_time` TIMESTAMP NOT NULL,
+	`capacity` INT NOT NULL,
+	`user_count` INT NOT NULL,
+	`duration` INT NOT NULL,
+	`session_status` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `account_detail` (
+	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`account_no` INT NOT NULL,
+	`bank` varchar(255) NOT NULL,
+	`branch` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `appointment` (
+	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`user_id` INT NOT NULL,
+	`session_id` INT NOT NULL,
+	`start_time` TIMESTAMP NOT NULL,
+	`status` INT(1) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `counsellors` (
+	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`member_id` INT NOT NULL UNIQUE,
+	`description` TEXT NOT NULL,
+	`session_charge` INT NOT NULL,
+	`profile_pic` TEXT NOT NULL,
+	`rating` FLOAT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `session_status` (
+	`id` INT(1) NOT NULL AUTO_INCREMENT UNIQUE,
+	`status` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `appointment_status` (
+	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`status` varchar(255) NOT NULL UNIQUE,
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `members` ADD CONSTRAINT `members_fk0` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`);
+
+ALTER TABLE `members` ADD CONSTRAINT `members_fk1` FOREIGN KEY (`status`) REFERENCES `user_status`(`id`);
+
+ALTER TABLE `members` ADD CONSTRAINT `members_fk2` FOREIGN KEY (`account_detail_id`) REFERENCES `account_detail`(`id`);
+
+ALTER TABLE `auth` ADD CONSTRAINT `auth_fk0` FOREIGN KEY (`member_id`) REFERENCES `members`(`id`);
+
+ALTER TABLE `sessions` ADD CONSTRAINT `sessions_fk0` FOREIGN KEY (`counsellor_id`) REFERENCES `counsellors`(`id`);
+
+ALTER TABLE `sessions` ADD CONSTRAINT `sessions_fk1` FOREIGN KEY (`session_status`) REFERENCES `session_status`(`id`);
+
+ALTER TABLE `appointment` ADD CONSTRAINT `appointment_fk0` FOREIGN KEY (`session_id`) REFERENCES `sessions`(`id`);
+
+ALTER TABLE `appointment` ADD CONSTRAINT `appointment_fk1` FOREIGN KEY (`status`) REFERENCES `appointment_status`(`id`);
+
+ALTER TABLE `counsellors` ADD CONSTRAINT `counsellors_fk0` FOREIGN KEY (`member_id`) REFERENCES `members`(`id`);
+
+
+
+
+
+
+
+
+
+

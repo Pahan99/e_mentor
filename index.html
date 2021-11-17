@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User Profile</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="popup.js"></script>
+    <script src="change_password.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container" >
+        <form>
+            <label>First Name:</label>
+            <input type="text" name="fname" value = "Nipun"> <br><br>
+            <label>Last Name:</label>
+            <input type="text" name="lname" value="Pramuditha"><br><br>
+            <label>Email:</label>
+            <input type="text" name="email" value="nipun1969@gmail.com"><br><br>
+            <label>Contact Number:</label>
+            <input type="text" name="contactNumber" value="+94778338018"><br><br>
+            <button name="done">Done</button>
+            <button name="cancel">Cancel</button><br><br>
+        </form>
+        <div class="popup" onclick="func()">Change Password
+            <span class="popuptext" id="myPopup">
+                <form name="frmChange" method="post" action="" onSubmit="return validatePassword()">
+                    <div style="width:500px;">
+                    <div class="message"><?php if(isset($message)) { echo $message; } ?></div>
+                        <table border="0" cellpadding="10" cellspacing="0" width="500" align="center" class="tblSaveForm">
+                            <tr class="tableheader">
+                                <td colspan="2">Change Password</td>
+                            </tr>
+                            <tr>
+                                <td width="40%"><label>Current Password</label></td>
+                                <td width="60%"><input type="password" name="currentPassword" class="txtField"/><span id="currentPassword"  class="required"></span></td>
+                            </tr>
+                            <tr>
+                                <td><label>New Password</label></td>
+                                <td><input type="password" name="newPassword" class="txtField"/><span id="newPassword" class="required"></span></td>
+                            </tr>
+                                <td><label>Confirm Password</label></td>
+                                <td><input type="password" name="confirmPassword" class="txtField"/><span id="confirmPassword" class="required"></span></td>
+                                </tr>
+                            <tr>
+                                <td colspan="2"><input type="submit" name="submit" value="Submit" class="btnSubmit"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    </form>
+            </span>
+        </div>
+        
+    </div>
+</body>
+</html>

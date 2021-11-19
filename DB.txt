@@ -77,6 +77,23 @@ CREATE TABLE `appointment_status` (
 	PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `resources` (
+	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`type_id` INT NOT NULL,
+	`url` TEXT NOT NULL UNIQUE,
+	`title` varchar(255) NOT NULL,
+	`description` TEXT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `resource_types` (
+	`t_id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`type` varchar(255) NOT NULL UNIQUE,
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `resources` ADD CONSTRAINT `resources_fk0` FOREIGN KEY (`type_id`) REFERENCES `resource_types`(`t_id`);
+
 ALTER TABLE `members` ADD CONSTRAINT `members_fk0` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`);
 
 ALTER TABLE `members` ADD CONSTRAINT `members_fk1` FOREIGN KEY (`status`) REFERENCES `user_status`(`id`);
@@ -94,6 +111,9 @@ ALTER TABLE `appointment` ADD CONSTRAINT `appointment_fk0` FOREIGN KEY (`session
 ALTER TABLE `appointment` ADD CONSTRAINT `appointment_fk1` FOREIGN KEY (`status`) REFERENCES `appointment_status`(`id`);
 
 ALTER TABLE `counsellors` ADD CONSTRAINT `counsellors_fk0` FOREIGN KEY (`member_id`) REFERENCES `members`(`id`);
+
+INSERT INTO `resource_types` (type) VALUES ('Youtube URL');
+INSERT INTO `resource_types` (type) VALUES ('Web URL')
 
 
 

@@ -38,24 +38,7 @@ class ResourceController extends Controller
                 'model' => $resourceModel,
 
             ]);
-//            $url = $request->getBody()['url'];
-//            $title = $request->getBody()['title'];
-//            $type = $request->getBody()['type_id'];
-//            $description = $request->getBody()['description'];
-//
-//            if (!$url){
-//                $errors['url'] = 'URL is required';
-//            }
-//            if (!$title){
-//                $errors['title'] = 'Title is required';
-//            }
-//
-//           echo '<pre>';
-//           var_dump($errors);
-//           echo '</pre>';
-//
-//
-//            return 'Handling new resource data';
+
         }
         return $this->render('create_resource', [
             'model' => $resourceModel

@@ -16,11 +16,6 @@ class AuthController extends Controller
         return $this->render('login');
     }
 
-    public function registerMember(Request $request){
-        if ($request->isPost()){
-            return 'Handling data';
-        }
-        return $this->render('register_member');
-    }
+
 
 }

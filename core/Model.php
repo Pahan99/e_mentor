@@ -8,6 +8,7 @@ abstract class Model
 {
     public const RULE_REQUIRED = 'required';
     public const RULE_URL = 'url';
+    public const RULE_PASSWORD = 'password';
 
 
     public array $errors = [];
@@ -16,9 +17,13 @@ abstract class Model
     {
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
+                echo '<pre>';
+                var_dump($key);
+                echo '</pre>';
                 $this->{$key} = $value;
             }
         }
+
     }
 
     public abstract function getValidationRules(): array;
@@ -36,6 +41,7 @@ abstract class Model
                 if ($checked_rule === self::RULE_REQUIRED && !$checked_attr) {
                     $this->addError($attribute, self::RULE_REQUIRED);
                 }
+
                 if ($checked_rule === self::RULE_URL && filter_var($checked_attr, FILTER_VALIDATE_URL)) {
                     $this->addError($attribute, self::RULE_URL);
                 }

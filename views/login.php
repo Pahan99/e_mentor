@@ -12,5 +12,5 @@
     <input type="password" name="password" id="password">
     <br>
     <br>
-    <button type="submit">Login</button>
+    <button type="submit" class="btn btn-primary">Login</button>
 </form>

@@ -5,6 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use app\controllers\AuthController;
 use app\controllers\ResourceController;
 use app\controllers\SiteController;
+use app\controllers\UserController;
 use app\core\Application;
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
@@ -19,7 +20,6 @@ $config = [
 ];
 
 $app = new Application(dirname(__DIR__),$config);
-$resource_Controller = new SiteController();
 
 
 $app->router->get('/',[SiteController::class,'welcome']);
@@ -40,8 +40,8 @@ $app->router->post('/createresource',[ResourceController::class,'createResource'
 $app->router->get('/login',[AuthController::class,'login']);
 $app->router->post('/login',[AuthController::class,'login']);
 
-$app->router->get('/register',[AuthController::class,'registerMember']);
-$app->router->post('/register',[AuthController::class,'registerMember']);
+$app->router->get('/userregistration',[UserController::class,'registerMember']);
+$app->router->post('/userregistration',[UserController::class,'registerMember']);
 
 
 

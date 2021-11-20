@@ -2,11 +2,7 @@
 
 <h3>Available Resources</h3>
 <br>
-<!--<div class="alert alert-success alert-dismissible fade show" role="alert"-->
-<!--     style="display:--><?php //echo $success=='' ? 'block' : 'none' ?><!--">-->
-<!--    <strong>--><?php //echo $success ?? ''; ?><!--</strong>-->
-<!--    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
-<!--</div>-->
+
 <br>
 <a href="/createresource" class="btn btn-primary"><span class="material-icons">
 add_circle

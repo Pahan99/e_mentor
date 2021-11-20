@@ -15,11 +15,6 @@ class ResourceController extends Controller
         return $this->render('resource_manager');
     }
 
-    public function handleResource(Request $request)
-    {
-
-    }
-
     public function createResource(Request $request)
     {
         $errors = [];

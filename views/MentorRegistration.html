@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1,h2,h3{
+            text-align: center;
+        }
+        .form_group input{
+            height: 30px;
+            width: 50%;
+            border: none;
+            border-bottom: 1px solid black;
+        }
+        label{
+            font-weight: bold;
+        }
+        .SubmitButton input {
+            font-size: medium;
+            width: 30%;
+            height: 40px;
+            margin-left: 10%;
+        }
+        hr{
+            width: 75%;
+        }
+        .general, .session{
+            margin-left: 30%;
+        }
+    </style>
+</head>
+<body>
+<br>
+<h1>Register as Mentor</h1>
+<br>
+<div class="container">
+    <form action="submit">
+        <div class="general">
+            <div class = "form_group">
+                <label>Full Name :</label>
+                <br>
+                <input type = "text" name = "fname" value = "" required/>
+                <br>
+            </div>
+            <br>
+            <div class = "form_group">
+                <label>Email :</label>
+                <br>
+                <input type = "text" name = "email" value = "" required/>
+            </div>
+            <br>
+            <div class = "form_group">
+                <label>Contact Number :</label>
+                <br>
+                <input type = "text" name = "contactNumber" value = "" />
+            </div>
+            <br>
+            <div class = "form_group">
+                <label>Password :</label>
+                <br>
+                <input type = "password" name = "pwd" value = "" required/>
+            </div>
+            <br>
+            <div class = "form_group">
+                <label>Confirm Password :</label>
+                <br>
+                <input type = "password" name = "confirm_pwd" value = "" required/>
+            </div>
+            <br>
+        </div>
+        <hr>
+        <h2>Session details</h2>
+        <h3>Following details will be displayed in your profile.</h3>
+        <div class="session">
+            <div class = "form_group">
+                <label>Description :</label>
+                <br>
+                <textarea name="desc" id="description" cols="60" rows="10"></textarea>
+                <br>
+            </div>
+            <br>
+            <div class = "form_group">
+                <label>Charge per session in LKR:</label>
+                <br>
+                <input type = "text" name = "charge" value = "" required/>
+                <br>
+            </div>
+            <br>
+            <div class = "date_group">
+                <label>Start times : </label>
+                <br>
+                <label for="mon">Monday:</label>
+                <input type="time" id="mon" name="mon">
+                <br>
+                <label for="tue">Tuesday:</label>
+                <input type="time" id="tue" name="mon">
+                <br>
+                <label for="wed">Wednesday:</label>
+                <input type="time" id="wed" name="mon">
+                <br>
+                <label for="thu">Thursday:</label>
+                <input type="time" id="thu" name="mon">
+                <br>
+                <label for="fri">Friday:</label>
+                <input type="time" id="fri" name="mon">
+                <br>
+                <label for="sat">Saturday:</label>
+                <input type="time" id="sat" name="mon">
+                <br>
+                <label for="sun">Sunday:</label>
+                <input type="time" id="sun" name="mon">
+                <br>
+            </div>
+            <br>
+            <div class = "form_group">
+                <label>Duration of a session : </label>
+                <br>
+                <input type = "text" name = "duration" value = "" required/>
+                <br>
+            </div>
+            <br>
+            <div class = "form_group">
+                <label>Capacity of a session : </label>
+                <br>
+                <input type = "number" name = "capacity" value = "" required/>
+                <br>
+            </div>
+            <br>
+            <div class="SubmitButton">
+                <input type="submit" value="Submit">
+            </div>
+
+        </div>
+
+
+    </form>
+</div>
+
+</body>
+</html>

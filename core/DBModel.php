@@ -76,6 +76,7 @@ abstract class DBModel extends Model
         $statement = self::prepare("UPDATE $table SET " . implode(',', $values) . " WHERE id =:id");
 
 
+
         $statement->bindValue(":id", $params["id"]);
 
 

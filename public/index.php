@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use app\controllers\AuthController;
+use app\controllers\CounsellorController;
 use app\controllers\ResourceController;
 use app\controllers\SiteController;
 use app\controllers\UserController;
@@ -23,6 +24,7 @@ $app = new Application(dirname(__DIR__),$config);
 
 
 $app->router->get('/',[SiteController::class,'welcome']);
+
 $app->router->get('/profile',[UserController::class,'editMember']);
 $app->router->post('/profile',[UserController::class,'editMember']);
 
@@ -42,8 +44,11 @@ $app->router->post('/createresource',[ResourceController::class,'createResource'
 $app->router->get('/login',[AuthController::class,'login']);
 $app->router->post('/login',[AuthController::class,'login']);
 
-$app->router->get('/register/user',[UserController::class,'registerMember']);
-$app->router->post('/register/user',[UserController::class,'registerMember']);
+$app->router->get('/register_user',[UserController::class,'registerMember']);
+$app->router->post('/register_user',[UserController::class,'registerMember']);
+
+$app->router->get('/register_mentor',[CounsellorController::class,'registerMember']);
+$app->router->post('/register_mentor',[CounsellorController::class,'registerMember']);
 
 $app->router->get('/dashboard',[UserController::class,'searchMember']);
 

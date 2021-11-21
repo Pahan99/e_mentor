@@ -63,6 +63,7 @@ class ResourceController extends Controller
             $params = $request->getQueryParams();
 
             $resourceModel->loadData($request->getBody());
+
             $resourceModel->updateById($params);
             header('location:/resources');
 

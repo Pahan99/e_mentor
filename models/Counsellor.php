@@ -6,18 +6,15 @@ namespace app\models;
 
 use app\core\DBModel;
 
-class Counsellor extends DBModel
+abstract class Counsellor extends MemberModel
 {
 
     public function getTable(): string
     {
-        // TODO: Implement getTable() method.
+       return 'counsellors';
     }
 
-    function getAttributes()
-    {
-        // TODO: Implement getAttributes() method.
-    }
+
 
     public function getValidationRules(): array
     {
@@ -28,4 +25,6 @@ class Counsellor extends DBModel
     {
         // TODO: Implement create() method.
     }
+
+    public abstract function getRoleID():string;
 }

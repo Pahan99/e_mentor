@@ -60,17 +60,28 @@ class UserController extends MemberController
 
         $user = new User();
         if ($request->isGet()) {
+
             $user->loadData($request->getBody());
+
             $user = $user->getOne(["id" => $_SESSION['user']['id']]);
 
             return $this->render('profile', [
                 'user' => $user
+
             ]);
         }
+        if ($request->isPost()) {
+            $params = $request->getQueryParams();
 
-        return $this->render('dashboard', [
-            'user' => $user
-        ]);
+            $user->loadData($user->getOne(["id" => $_SESSION['user']['id']]));
+            $user->loadData($request->getBody());
+
+            $user->update($params);
+
+
+            $_SESSION['user']['name'] = $user->name;
+            Application::$app->response->redirect('/dashboard');
+        }
     }
 
     public function removeMember(Request $request)

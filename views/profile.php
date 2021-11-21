@@ -1,6 +1,5 @@
-<?php /**@var $user User*/
-
-use app\models\User; ?>
+<?php /**@var $user array */
+ ?>
 
 <h1>Profile</h1>
 <form action="" method="post">

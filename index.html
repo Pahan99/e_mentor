@@ -11,20 +11,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+    <h1 align='center'>Edit User Profile</h1>
     <div class="container" >
         <form>
-            <label>First Name:</label>
+            <label>First Name</label><br>
             <input type="text" name="fname" value = "Nipun"> <br><br>
-            <label>Last Name:</label>
+            <label>Last Name</label><br>
             <input type="text" name="lname" value="Pramuditha"><br><br>
-            <label>Email:</label>
+            <label>Emai:</label><br>
             <input type="text" name="email" value="nipun1969@gmail.com"><br><br>
-            <label>Contact Number:</label>
+            <label>Contact Number</label><br>
             <input type="text" name="contactNumber" value="+94778338018"><br><br>
-            <button name="done">Done</button>
-            <button name="cancel">Cancel</button><br><br>
+            <button name="done", class="donebtn floated" style="width:50%" >Done</button>
+            <button name="cancel", class="cancelbtn floated"style="width:50%">Cancel</button><br><br>
         </form>
-        <div class="popup" onclick="func()">Change Password
+        <div class="popup" onclick="func()">
+            <button class='changebtn'>Change Password</button>
             <span class="popuptext" id="myPopup">
                 <form name="frmChange" method="post" action="" onSubmit="return validatePassword()">
                     <div style="width:500px;">

@@ -8,9 +8,14 @@ use app\core\Request;
 
 class SiteController extends Controller
 {
-    public function welcome(){
-
+    public function welcome()
+    {
         return $this->render('welcome');
+    }
+
+    public function profile()
+    {
+        return $this->render('profile');
     }
 
 

@@ -105,6 +105,10 @@ input[type=text]:focus, input[type=password]:focus {
   outline: none;
 }
 
+#email{
+  background:grey;
+}
+
 .donebtn {
   background-color: #04AA6D;
   color:black;

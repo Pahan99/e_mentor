@@ -1,56 +1,84 @@
 /* Popup container */
 .popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
   
-  /* The actual popup (appears on top) */
-  .popup .popuptext {
-    visibility: hidden;
-    width: 500px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-  }
-  
-  /* Popup arrow */
-  .popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }
-  
-  /* Toggle this class when clicking on the popup container (hide and show the popup) */
-  .popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
-  }
-  
-  /* Add animation (fade in the popup) */
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-  }
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 600px;
+  background-color: rgb(167, 23, 180);
+  color:black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 10%;
+  margin-left: -80px;
+}
 
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility:visible;
+  -webkit-animation: fadeIn 100s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.txtField { 
+  width:10%;
+  padding:15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #d8bbbb;
+}
+
+input[type=password]:focus {
+  background-color:rgb(194, 243, 57);
+  outline: none;
+}
+
+.submitbtn{
+  background-color:#ff7010;
+  color:black;
+  padding: 8px 15px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  opacity: 0.9;
+}
+
+.submitbtn:hover{
+  opacity: 1.2;
+}
 
 /* ------------------------------ */
 body{
@@ -80,7 +108,7 @@ input[type=text]:focus, input[type=password]:focus {
 .donebtn {
   background-color: #04AA6D;
   color:black;
-  padding: 16px 20px;
+  padding: 8px 15px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
@@ -91,7 +119,7 @@ input[type=text]:focus, input[type=password]:focus {
 .cancelbtn {
   background-color:#aa8304;
   color:black;
-  padding: 16px 20px;
+  padding: 8px 15px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
@@ -113,7 +141,7 @@ input[type=text]:focus, input[type=password]:focus {
 .changebtn{
   background-color:#02ff39;
   color:black;
-  padding: 16px 20px;
+  padding: 8px 15px;
   margin: 8px 0;
   border: none;
   cursor: pointer;

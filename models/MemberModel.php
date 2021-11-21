@@ -16,7 +16,5 @@ abstract class MemberModel extends DBModel
 
     public abstract function getValidationRules():array;
 
-    public abstract function create(): bool;
-
     public abstract function getRoleID():string ;
 }

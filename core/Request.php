@@ -28,13 +28,12 @@ class Request
     {
         $params = [];
         if (isset($_SERVER['QUERY_STRING'])) {
-
             $queryString = $_SERVER['QUERY_STRING'] ?? false;
-            $id = explode('=', $queryString)[0];
-            $value = explode('=', $queryString)[1];
-
-            $params[$id] = $value;
-
+            $queryList = explode('&', $queryString);
+            foreach ($queryList as $queryItem) {
+                $condition = explode('=', $queryItem);
+                $params[$condition[0]] = $condition[1];
+            }
 
         }
         return $params;

@@ -52,14 +52,18 @@ abstract class DBModel extends Model
     {
         $table = $this->getTable();
 
-//        foreach ($params as $attribute => $value) {
-//            echo '<pre>';
-//            var_dump($attribute,$value);
-//            echo '</pre>';
-//        }
 
-        $statement = self::prepare("SELECT * FROM $table WHERE id={$params['id']}");
+        $query = "SELECT * FROM $table WHERE ";
+        $conditions = '';
+
+        foreach ($params as $key => $param) {
+            $conditions .= $key . "='" . $param . "' AND ";
+        }
+        $conditions = substr($conditions, 0, -5);
+        $query .= $conditions;
+        $statement = self::prepare($query);
         $statement->execute();
+
         return $statement->fetch();
     }
 
@@ -87,7 +91,7 @@ abstract class DBModel extends Model
         $table = $this->getTable();
         $statement = self::prepare("DELETE FROM $table WHERE id=:id");
 
-        $statement->bindValue(":id",$params["id"]);
+        $statement->bindValue(":id", $params["id"]);
 
         return $statement->execute();
     }

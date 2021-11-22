@@ -90,7 +90,8 @@ class UserController extends MemberController
 
     public function removeMember(Request $request)
     {
-        // TODO: Implement removeMember() method.
+
+        
     }
 
     public function change_password(Request $request, Response $response){

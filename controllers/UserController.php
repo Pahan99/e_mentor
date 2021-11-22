@@ -9,6 +9,7 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\Auth;
+use app\models\Counsellor;
 use app\models\User;
 use PhpOption\None;
 use function Sodium\compare;
@@ -69,26 +70,46 @@ class UserController extends MemberController
             $role = $user["role_id"];
             $view = ($role == 1 ? 'edit_user_profile':($role == 5?'admin_profile':'counsellor_profile'));
 
+            if ($role!="1" && $role!="5"){
+
+                $counsellor =new Counsellor();
+                $counsellor_data=$counsellor->getOne(["member_id" => $user['id']]);
+
+
+            }
             return $this->render($view, [
-                'user' => $user
+                'user' => $user,
+                'counsellor'=>$counsellor_data
 
             ]);
         }
         if ($request->isPost()) {
             $params = $request->getQueryParams();
-
-//            echo '<pre>';
-//            var_dump($user);
-//            echo '</pre>';
-
-
-            $user->loadData($user->getOne(["id" => $_SESSION['user']['id']]));
-
+            $user_data = $user->getOne(["id" => $_SESSION['user']['id']]);
+            $user->loadData($user_data);
             $user->loadData($request->getBody());
-//            echo '<pre>';
-//            var_dump($user);
-//            echo '</pre>';
-//            exit();
+            $role = $user_data["role_id"];
+
+
+            if ($role!="1" && $role!="5"){
+
+
+                $counsellor =new Counsellor();
+
+
+                if($user->update(["id" => $user->id])) {
+
+
+                    $counsellor_data = $counsellor->getOne(["member_id" => $user_data['id']]);
+                    $counsellor->loadData($counsellor_data);
+                    $counsellor->loadData($request->getBody());
+                    if($counsellor->update(["id" => $counsellor->id])) {
+                        $_SESSION['user']['name'] = $user->name;
+                        Application::$app->response->redirect('/dashboard');
+                    }
+                }
+            }
+
             $user->update($params);
 
 
@@ -113,16 +134,7 @@ class UserController extends MemberController
             ]);
         }
         if ($request->isPost()) {
-//            $params = $request->getQueryParams();
-//
-//            $user->loadData($user->getOne(["id" => $_SESSION['user']['id']]));
-//            $user->loadData($request->getBody());
-//
-//            $user->update($params);
-//
-//
-//            $_SESSION['user']['name'] = $user->name;
-//            Application::$app->response->redirect('/dashboard');]
+
             $user = new User();
             $user_info = $user->getOne(["id" => $_SESSION['user']['id']]);
             $user->loadData($user_info);
@@ -149,9 +161,24 @@ class UserController extends MemberController
             $user->password=password_hash($new_pass, PASSWORD_DEFAULT);
             $user_info['password']= $user->password;
 
+            $role = $user_info["role_id"];
+            $view = ($role == 1 ? 'edit_user_profile':($role == 5?'admin_profile':'counsellor_profile'));
+
+            if ($role!="1" && $role!="5"){
+
+                $counsellor =new Counsellor();
+                $counsellor_data=$counsellor->getOne(["member_id" => $user_info['id']]);
+                if($user->update(['id'=>$user->id]))
+                {
+                    Application::$app->response->redirect('/profile?id='.$user->id);
+
+                }
+
+
+            }
             if($user->update(['id'=>$user->id]))
             {
-                return $this->render('edit_user_profile', ['user'=>$user_info]);
+                return $this->render($view, ['user'=>$user_info]);
             }
 
         }

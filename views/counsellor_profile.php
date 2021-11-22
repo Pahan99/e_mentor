@@ -1,7 +1,9 @@
-<?php /**@var $user array */
+<?php /**@var $user array
+ *@var $counsellor array
+ */
 
 //echo '<pre>';
-//var_dump($user);
+//var_dump($user , $counsellor);
 //echo '</pre>';
 //exit();
 ?>
@@ -16,13 +18,13 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
-            <input name="name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $_SESSION['user']["name"] ;?>>
+            <input name="name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $user["name"] ;?>>
             &nbsp;&nbsp;
             </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
-            <input name="email" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $user["email"];?> >
+            <input disabled name="email" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $user["email"];?> >
         </div>
 
         <div class="input-group mb-3">
@@ -31,19 +33,19 @@
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-            <input name="description" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $user["description"];?>>
+            <textarea name="description" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" ><?php echo $counsellor["description"];?> </textarea>
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Charge per session in LKR</span>
-            <input name="session_charge" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="Sahan@gmail.com">
+            <input name="session_charge" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $counsellor["session_charge"];?>>
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Duration of a session (in minutes)</span>
-            <input name="duration" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="Sahan@gmail.com">
+            <input name="duration" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $counsellor["duration"];?>>
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Capacity of a session</span>
-            <input name="capacity" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="Sahan@gmail.com">
+            <input name="capacity" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $counsellor["capacity"];?>>
         </div>
         <a href="/change_password" class="btn btn-secondary">change password</a>
         <br>

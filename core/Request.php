@@ -28,13 +28,12 @@ class Request
     {
         $params = [];
         if (isset($_SERVER['QUERY_STRING'])) {
-
             $queryString = $_SERVER['QUERY_STRING'] ?? false;
-            $id = explode('=', $queryString)[0];
-            $value = explode('=', $queryString)[1];
-
-            $params[$id] = $value;
-
+            $queryList = explode('&', $queryString);
+            foreach ($queryList as $queryItem) {
+                $condition = explode('=', $queryItem);
+                $params[$condition[0]] = $condition[1];
+            }
 
         }
         return $params;
@@ -57,14 +56,17 @@ class Request
 
         if ($this->getMethod() === 'get') {
             foreach ($_GET as $key => $value) {
-                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRIPPED);
             }
         }
 
         if ($this->getMethod() === "post") {
+
             foreach ($_POST as $key => $value) {
-                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRIPPED);
             }
+
+
         }
 
         return $body;

@@ -23,16 +23,11 @@ class ResourceController extends Controller
             $resourceModel->loadData($request->getBody());
 
             if ($resourceModel->validateData() && $resourceModel->create()) {
-                return $this->render('resource_manager', [
-                    'list' => $resourceModel->search(),
-                    'success'=> "Resource added successfully"
-                    ]);
+
+                header('location:/resources');
             }
 
-            return $this->render('create_resource', [
-                'model' => $resourceModel,
-
-            ]);
+            header('location:/resources');
 
         }
         return $this->render('create_resource', [
@@ -68,14 +63,10 @@ class ResourceController extends Controller
             $params = $request->getQueryParams();
 
             $resourceModel->loadData($request->getBody());
-            $resourceModel->updateById($params);
 
-            return $this->render('resource_manager', [
-                'model' => $resourceModel,
-                'params' => $params,
-                'list'=>$resourceModel->search(),
-                'success'=> "Resource updated successfully"
-            ]);
+            $resourceModel->updateById($params);
+            header('location:/resources');
+
         }
     }
 
@@ -87,12 +78,9 @@ class ResourceController extends Controller
 
 
             if ($resourceModel->deleteById($params)) {
-                return $this->render('resource_manager', [
-                    'list' => $resourceModel->search(),
-                    'success'=>"Resource deleted successfully."
-                ]);
+                header('location:/resources');
             }
         }
-        return $this->render('resource_manager', ['list' => $resourceModel->search()]);
+        header('location:/resources');
     }
 }

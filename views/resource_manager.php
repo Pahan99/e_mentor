@@ -1,3 +1,4 @@
+<?php /** @var $list array  */?>
 <h1>Manage resources</h1>
 
 <h3>Available Resources</h3>

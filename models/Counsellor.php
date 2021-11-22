@@ -10,8 +10,8 @@ class Counsellor extends DBModel
 {
     public string $id;
     public string $member_id;
-    public string $description;
-    public float $session_charge;
+    public string $description='';
+    public float $session_charge=0;
 
 
     public function getTable(): string

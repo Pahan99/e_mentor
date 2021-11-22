@@ -53,8 +53,16 @@ $app->router->post('/register_mentor',[CounsellorController::class,'registerMemb
 
 $app->router->get('/dashboard',[UserController::class,'searchMember']);
 
-$app->router->get('/admin','admin');
+$app->router->get('/admin',[SiteController::class,'admin']);
+$app->router->post('/admin',[SiteController::class,'admin']);
 
+
+$app->router->post('/verify_user',[UserController::class,'verify']);
+$app->router->post('/remove_user',[UserController::class,'delete']);
+$app->router->get('/view_user',[UserController::class,'view']);
+
+$app->router->get('/add_user',[CounsellorController::class,'add_counsellor']);
+$app->router->post('/add_user',[CounsellorController::class,'add_counsellor']);
 
 
 

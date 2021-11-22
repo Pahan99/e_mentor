@@ -81,4 +81,25 @@ class CounsellorController extends MemberController
     {
         // TODO: Implement removeMember() method.
     }
+
+    public function add_counsellor(Request $request)
+    {
+        if ($request->isGet()) {
+            return $this->render('add_user');
+        }
+        $role = $request->getBody()["role"];
+        $role_id = $role == "doctor" ? "2" : "4";
+        $userModel = new User();
+        $userModel->role_id = $role_id;
+        $userModel->status = '1';
+
+        $userModel->loadData($request->getBody());
+
+        $counsellorModel = new Counsellor();
+        if ($userModel->save()) {
+            $counsellorModel->member_id = $userModel->getOne(["email" => $userModel->email])["id"];
+            $counsellorModel->save();
+           Application::$app->response->redirect('/admin');
+        }
+    }
 }

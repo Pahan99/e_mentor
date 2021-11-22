@@ -9,8 +9,9 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\Auth;
-use app\models\Counsellor;
 use app\models\User;
+use PhpOption\None;
+use function Sodium\compare;
 
 
 class UserController extends MemberController
@@ -27,7 +28,7 @@ class UserController extends MemberController
 
             if ($userModel->save()) {
                 $userModel->id = $userModel->getOne(["email" => $userModel->email])["id"];
-                //Application::$app->session->setFlash('success', 'Registered successfully');
+                Application::$app->session->setFlash('success', 'Registered successfully');
                 $_SESSION['user'] = [
                     'id' => $userModel->id,
                     'name' => $userModel->name
@@ -51,16 +52,9 @@ class UserController extends MemberController
         }
     }
 
-    public function searchAllMembers(): array
+    public function searchAllMembers()
     {
-        $userModel = new User();
-
-
-        return $userModel->getAll([
-            'user_status' => ['status' => 'id']
-        ]);
-
-
+        // TODO: Implement searchAllMembers() method.
     }
 
     public function editMember(Request $request)
@@ -73,7 +67,7 @@ class UserController extends MemberController
 
             $user = $user->getOne(["id" => $_SESSION['user']['id']]);
             $role = $user["role_id"];
-            $view = ($role == 1 ? 'user_profile' : ($role == 5 ? 'admin_profile' : 'counsellor_profile'));
+            $view = ($role == 1 ? 'edit_user_profile':($role == 5?'admin_profile':'counsellor_profile'));
 
             return $this->render($view, [
                 'user' => $user
@@ -99,50 +93,57 @@ class UserController extends MemberController
         // TODO: Implement removeMember() method.
     }
 
-    public function verify(Request $request)
-    {
-        $user_id = substr($request->getBody()["id"], 0, -1);
+    public function change_password(Request $request, Response $response){
+        if ($request->isGet()) {
 
-        $userModel = new User();
-        $data = $userModel->getOne(["id" => $user_id]);
-        $userModel->loadData($data);
 
-        $userModel->status = '2';
-        $userModel->update(["id" => $userModel->id]);
-        Application::$app->response->redirect('/admin');
+
+            return $this->render('change_password', [
+
+            ]);
+        }
+        if ($request->isPost()) {
+//            $params = $request->getQueryParams();
+//
+//            $user->loadData($user->getOne(["id" => $_SESSION['user']['id']]));
+//            $user->loadData($request->getBody());
+//
+//            $user->update($params);
+//
+//
+//            $_SESSION['user']['name'] = $user->name;
+//            Application::$app->response->redirect('/dashboard');]
+            $user = new User();
+            $user_info = $user->getOne(["id" => $_SESSION['user']['id']]);
+            $user->loadData($user_info);
+            $org_pass = $user_info['password'];
+
+            $info = $request->getBody();
+            $curr_pass = $info['curr_pass'];
+            $new_pass = $info['new_pass'];
+            $confirm_pass = $info['confirm_pass'];
+
+            if (!password_verify($curr_pass, $org_pass)){
+                return $this->render('change_password', ['error'=>"Wrong current password"]
+                );
+            }
+            if (strcmp($new_pass, $confirm_pass)){
+                return $this->render('change_password', ['error'=>"New password does not match"]
+                );
+            }
+            if (strcmp($new_pass, $curr_pass)==0){
+                return $this->render('change_password', ['error'=>"Try new password"]
+                );
+            }
+
+            $user->password=password_hash($new_pass, PASSWORD_DEFAULT);
+            $user_info['password']= $user->password;
+
+            if($user->update(['id'=>$user->id]))
+            {
+                return $this->render('edit_user_profile', ['user'=>$user_info]);
+            }
+
+        }
     }
-
-    public function delete(Request $request)
-    {
-        $user_id = substr($request->getBody()["id"], 0, -1);
-
-        $userModel = new User();
-        $data = $userModel->getOne(["id" => $user_id]);
-        $userModel->loadData($data);
-
-        $userModel->status = '3';
-        $userModel->update(["id" => $userModel->id]);
-        Application::$app->response->redirect('/admin');
-    }
-
-    public function view(Request $request)
-    {
-        $user_id = $request->getBody()["id"];
-        $userModel = new User();
-        $userData = $userModel->getOne(["id" => $user_id]);
-        $user_id = $userData["id"];
-        $role = $userData["role_id"];
-
-        $counsellorModel = new Counsellor();
-        $counsellorData = $role === "1" ? [] : $counsellorModel->getOne(["member_id" => $user_id]);
-
-
-
-        return $this->render('view_user', [
-            "user" => $userData,
-            "counsellor_data"=>$counsellorData
-        ]);
-    }
-
-
 }

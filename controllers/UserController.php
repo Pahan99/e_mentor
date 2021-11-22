@@ -75,9 +75,18 @@ class UserController extends MemberController
         if ($request->isPost()) {
             $params = $request->getQueryParams();
 
-            $user->loadData($user->getOne(["id" => $_SESSION['user']['id']]));
-            $user->loadData($request->getBody());
+//            echo '<pre>';
+//            var_dump($user);
+//            echo '</pre>';
 
+
+            $user->loadData($user->getOne(["id" => $_SESSION['user']['id']]));
+
+            $user->loadData($request->getBody());
+//            echo '<pre>';
+//            var_dump($user);
+//            echo '</pre>';
+//            exit();
             $user->update($params);
 
 

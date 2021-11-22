@@ -5,20 +5,22 @@
 ?>
 
 <h1>Welcome</h1>
+<div class="d-flex justify-content-around">
+    <a href="/login" class="btn btn-primary col-md-3 ml-md-autoo">Login</a>
+    <br>
+    <a href="/register_user" class="btn btn-outline-primary col-md-3 ml-md-auto">Register as a user</a>
+    <br>
+    <a href="/register_mentor" class="btn btn-outline-primary col-md-3 ml-md-auto">Register as a mentor</a>
 
-<a href="/login" class="link">Login</a>
-<br>
-<a href="/register_user" class="link">Register as a user</a>
-<br>
-<a href="/register_mentor">Register as a mentor</a>
-<hr>
+</div>
+
 <br>
 
 <h2>
     Resources
 </h2>
 <br>
-<div class="row">
+<div class="row" style="background-color: #c3faff; padding: 20px; border-radius: 10px">
 
     <?php
     foreach ($resources
@@ -53,7 +55,7 @@ language
 
 </div>
 <h2>Counsellors</h2>
-<div class="row">
+<div class="row", style="padding: 20px; background-color: #bed5ff ; border-radius: 10px">
     <?php foreach ($counsellors as $counsellor) : ?>
         <div class="col-lg-6">
 

@@ -65,7 +65,7 @@ class UserController extends MemberController
 
             $user = $user->getOne(["id" => $_SESSION['user']['id']]);
 
-            return $this->render('profile', [
+            return $this->render('edit_user_profile', [
                 'user' => $user
 
             ]);

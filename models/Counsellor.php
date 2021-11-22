@@ -12,6 +12,8 @@ class Counsellor extends DBModel
     public string $member_id;
     public string $description='';
     public float $session_charge=0;
+    public int $capacity;
+    public int $duration;
 
 
     public function getTable(): string
@@ -26,7 +28,7 @@ class Counsellor extends DBModel
 
     function getAttributes(): array
     {
-        return ['member_id','description','session_charge'];
+        return ['member_id','description','session_charge','capacity','duration'];
     }
 
     public function getValidationRules(): array

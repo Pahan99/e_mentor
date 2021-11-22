@@ -96,7 +96,8 @@ class UserController extends MemberController
 
     public function removeMember(Request $request)
     {
-        // TODO: Implement removeMember() method.
+
+        
     }
 
     public function verify(Request $request)

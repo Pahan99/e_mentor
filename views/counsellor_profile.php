@@ -31,7 +31,7 @@
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-            <input name="description" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="Sahan@gmail.com">
+            <input name="description" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value=<?php echo $user["description"];?>>
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">Charge per session in LKR</span>
@@ -45,6 +45,10 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Capacity of a session</span>
             <input name="capacity" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="Sahan@gmail.com">
         </div>
+        <a href="/change_password" class="btn btn-secondary">change password</a>
+        <br>
+        <br>
+
 
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Submit</button>

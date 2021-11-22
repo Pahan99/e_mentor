@@ -14,6 +14,7 @@ abstract class DBModel extends Model
     {
         $table = $this->getTable();
         $attributes = $this->getAttributes();
+
         $params = array_map(fn($attribute) => ":$attribute", $attributes);
 
 
@@ -23,6 +24,9 @@ abstract class DBModel extends Model
         foreach ($attributes as $attribute) {
             $statement->bindValue(":$attribute", $this->{$attribute});
         }
+        echo '<pre>';
+        var_dump($statement);
+        echo '</pre>';
         return $statement->execute();
 
     }

@@ -56,14 +56,17 @@ class Request
 
         if ($this->getMethod() === 'get') {
             foreach ($_GET as $key => $value) {
-                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRIPPED);
             }
         }
 
         if ($this->getMethod() === "post") {
+
             foreach ($_POST as $key => $value) {
-                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRIPPED);
             }
+
+
         }
 
         return $body;

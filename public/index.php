@@ -43,6 +43,7 @@ $app->router->post('/createresource',[ResourceController::class,'createResource'
 
 $app->router->get('/login',[AuthController::class,'login']);
 $app->router->post('/login',[AuthController::class,'login']);
+$app->router->get('/logout',[AuthController::class,'logout']);
 
 $app->router->get('/register_user',[UserController::class,'registerMember']);
 $app->router->post('/register_user',[UserController::class,'registerMember']);
@@ -51,6 +52,9 @@ $app->router->get('/register_mentor',[CounsellorController::class,'registerMembe
 $app->router->post('/register_mentor',[CounsellorController::class,'registerMember']);
 
 $app->router->get('/dashboard',[UserController::class,'searchMember']);
+
+$app->router->get('/admin','admin');
+
 
 
 

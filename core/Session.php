@@ -47,4 +47,8 @@ class Session
         }
         $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
+
+    public function finish(){
+        session_destroy();
+    }
 }

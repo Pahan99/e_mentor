@@ -1,4 +1,5 @@
 <?php /**@var $user array */
+
  ?>
 
 <h1>Profile</h1>
@@ -8,7 +9,7 @@
             <label>Full Name :</label>
             <br>
 
-            <input type="text" name="name" value=<?php echo $user["name"] ;?> />
+            <input type="text" name="name" value=<?php echo $_SESSION['user']["name"] ;?> />
             <br>
         </div>
         <br>

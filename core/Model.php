@@ -13,7 +13,6 @@ abstract class Model
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
 
-
     public array $errors = [];
 
     public function loadData(array $data)

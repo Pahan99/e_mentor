@@ -5,27 +5,46 @@ namespace app\models;
 
 
 use app\core\DBModel;
+use app\core\Model;
 
-class Auth extends DBModel
+class Auth extends Model
 {
+    public string $email = '';
+    public string $password = '';
 
-    public function getTable(): string
-    {
-        return 'auth';
-    }
-
-    function getAttributes()
-    {
-        return ['password','verification'];
-    }
 
     public function getValidationRules(): array
     {
-        return [];
+        return [
+            'email' => self::RULE_REQUIRED,
+            'password' => self::RULE_REQUIRED
+        ];
     }
 
-    public function create(): bool
+    public function login():array
     {
-        $this->save();
+        $user = new User();
+        $userData = $user->getOne([
+            "email" => $this->email
+        ]);
+
+        if ($userData) {
+            $user->loadData($userData);
+            if (password_verify($this->password, $user->password)) {
+                return [
+                    'user'=>$user,
+                    'message'=>'success'
+                ];
+            }
+            return [
+                'user'=>null,
+                'message'=>'Password incorrect'
+            ];
+        }
+        return [
+            'user'=>null,
+            'message'=>'Email not found'
+        ];
+
     }
 }

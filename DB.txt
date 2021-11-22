@@ -89,10 +89,12 @@ CREATE TABLE `resources` (
 CREATE TABLE `resource_types` (
 	`t_id` INT NOT NULL AUTO_INCREMENT UNIQUE,
 	`type` varchar(255) NOT NULL UNIQUE,
-	PRIMARY KEY (`id`)
+	PRIMARY KEY (`t_id`)
 );
 
 ALTER TABLE `members` ADD `contact_no` VARCHAR(255) NOT NULL AFTER `email`;
+ALTER TABLE `members` ADD `password` VARCHAR(255) NOT NULL AFTER `email`;
+
 ALTER TABLE `members` CHANGE `account_detail_id` `account_detail_id` INT(11) NULL DEFAULT NULL;
 
 ALTER TABLE `resources` ADD CONSTRAINT `resources_fk0` FOREIGN KEY (`type_id`) REFERENCES `resource_types`(`t_id`);

@@ -17,9 +17,6 @@ abstract class Model
     {
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
-                echo '<pre>';
-                var_dump($key);
-                echo '</pre>';
                 $this->{$key} = $value;
             }
         }
@@ -50,7 +47,7 @@ abstract class Model
         return empty($this->errors);
     }
 
-    public abstract function create(): bool;
+
 
     private function addError(string $attribute, string $rule)
     {

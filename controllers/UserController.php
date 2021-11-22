@@ -64,8 +64,10 @@ class UserController extends MemberController
             $user->loadData($request->getBody());
 
             $user = $user->getOne(["id" => $_SESSION['user']['id']]);
+            $role = $user["role_id"];
+            $view = ($role == 1 ? 'user_profile':($role == 5?'admin_profile':'counsellor_profile'));
 
-            return $this->render('profile', [
+            return $this->render($view, [
                 'user' => $user
 
             ]);

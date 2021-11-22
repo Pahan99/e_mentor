@@ -6,7 +6,11 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
+use app\models\Counsellor;
+use app\models\Doctor;
 use app\models\Mentor;
+use app\models\User;
+use app\models\Yogacoach;
 
 class CounsellorController extends MemberController
 {
@@ -15,45 +19,65 @@ class CounsellorController extends MemberController
     {
         if ($request->isPost()) {
             $role = $request->getBody()["role"];
-            if ($role == 3) {
-                $mentor = new Mentor();
-                $mentor->role_id = $mentor->getRoleID();
+            $member = null;
+            if ($role == 2) {
+                $member = new Doctor();
+            } else if ($role == 3) {
+                $member = new Mentor();
+            } else if ($role == 4) {
+                $member = new Yogacoach();
+            }
+
+            $user = new User();
+            $user->role_id = $member->getRoleID();
 
 
-                $mentor->loadData($request->getBody());
-                $mentor->status = 1;
+            $user->loadData($request->getBody());
+            $member->loadData($request->getBody());
 
-                if ($mentor->save()) {
-                    $mentor->id = $mentor->getOne(["email" => $mentor->email])["id"];
-                    Application::$app->session->setFlash('success', 'Registered successfully');
+
+            $user->status = 1;
+
+            if ($user->save()) {
+                $member->member_id = $user->getOne(["email" => $user->email])["id"];
+
+                if ($member->save()) {
+                    echo 'Counsellor added';
                     $_SESSION['user'] = [
-                        'id' => $mentor->id,
-                        'name' => $mentor->name
-
+                        'id' => $member->member_id,
+                        'name' => $user->name
                     ];
-                    Application::$app->response->redirect('/profile');                }
+
+                    Application::$app->response->redirect('/profile');
+                }
 
             }
+
         }
+
         return $this->render('mentor_registration');
     }
 
-    public function searchMember(Request $request)
+    public
+    function searchMember(Request $request)
     {
         // TODO: Implement searchMember() method.
     }
 
-    public function searchAllMembers()
+    public
+    function searchAllMembers()
     {
         // TODO: Implement searchAllMembers() method.
     }
 
-    public function editMember(Request $request)
+    public
+    function editMember(Request $request)
     {
         // TODO: Implement editMember() method.
     }
 
-    public function removeMember(Request $request)
+    public
+    function removeMember(Request $request)
     {
         // TODO: Implement removeMember() method.
     }

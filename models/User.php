@@ -21,7 +21,7 @@ class User extends MemberModel
     {
         return [
             'name' => [self::RULE_REQUIRED]
-
+            
         ];
     }
 

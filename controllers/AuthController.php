@@ -20,15 +20,16 @@ class AuthController extends Controller
             $auth = new Auth();
             $auth->loadData($request->getBody());
             $loginResult = $auth->login();
-
+            $userModel = new User();
             if ($loginResult['user']) {
                 $_SESSION['user'] = [
                     'id' => $loginResult['user']->id,
-                    'name' => $loginResult['user']->name
-
+                    'name' => $loginResult['user']->name,
+                    'role_id' => $loginResult['user']->role_id
                 ];
-                if ($_SESSION['user']['role_id'] == 5){
+                if ($_SESSION['user']['role_id'] == "5") {
 
+                    return $this->render('admin');
                 }
                 $response->redirect('/dashboard');
             } else {
@@ -41,7 +42,8 @@ class AuthController extends Controller
 
     }
 
-    public function logout(Request $request,Response $response){
+    public function logout(Request $request, Response $response)
+    {
         Application::$app->session->finish();
         $response->redirect('/');
     }

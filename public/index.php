@@ -53,6 +53,9 @@ $app->router->post('/register_mentor',[CounsellorController::class,'registerMemb
 
 $app->router->get('/dashboard',[UserController::class,'searchMember']);
 
+$app->router->get('/admin','admin');
+
+
 
 
 $app->run();

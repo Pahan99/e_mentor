@@ -10,7 +10,6 @@ abstract class Model
     public const RULE_URL = 'url';
     public const RULE_PASSWORD = 'password';
 
-
     public array $errors = [];
 
     public function loadData(array $data)

@@ -34,6 +34,7 @@ class Resource extends DBModel
 
     function updateById(array $params)
     {
+
         return $this->update($params);
     }
     function deleteById(array $params)

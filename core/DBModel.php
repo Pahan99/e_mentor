@@ -24,9 +24,7 @@ abstract class DBModel extends Model
         foreach ($attributes as $attribute) {
             $statement->bindValue(":$attribute", $this->{$attribute});
         }
-        echo '<pre>';
-        var_dump($statement);
-        echo '</pre>';
+
         return $statement->execute();
 
     }
@@ -56,7 +54,6 @@ abstract class DBModel extends Model
     {
         $table = $this->getTable();
 
-
         $query = "SELECT * FROM $table WHERE ";
         $conditions = '';
 
@@ -66,12 +63,13 @@ abstract class DBModel extends Model
         $conditions = substr($conditions, 0, -5);
         $query .= $conditions;
         $statement = self::prepare($query);
+
         $statement->execute();
 
         return $statement->fetch();
     }
 
-    public function update($params)
+    public function update($params,$fields=[])
     {
         $table = $this->getTable();
         $attributes = $this->getAttributes();
@@ -79,10 +77,7 @@ abstract class DBModel extends Model
 
         $statement = self::prepare("UPDATE $table SET " . implode(',', $values) . " WHERE id =:id");
 
-
-
         $statement->bindValue(":id", $params["id"]);
-
 
         foreach ($attributes as $attribute) {
             $statement->bindValue(":$attribute", $this->{$attribute});

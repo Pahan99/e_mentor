@@ -27,9 +27,17 @@ class AuthController extends Controller
                     'name' => $loginResult['user']->name,
                     'role_id' => $loginResult['user']->role_id
                 ];
-                if ($_SESSION['user']['role_id'] == "5") {
 
-                    return $this->render('admin');
+
+                if ($_SESSION['user']['role_id'] == "5") {
+                    $user = new User();
+                    $members = array_filter($user->getAll(), function ($member) {
+                        return $member["role_id"] != "5" || $member["status"] != "3";
+                    });
+                    return $this->render('admin', [
+                        'members' => $members
+                    ]);
+
                 }
                 $response->redirect('/dashboard');
             } else {

@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\Resource;
 use app\models\User;
 
@@ -37,5 +38,20 @@ class SiteController extends Controller
         return $this->render('profile');
     }
 
+    public function admin(Request $request, Response $response)
+    {
+        $user = new User();
+        $members = array_filter($user->getAll(), function ($member) {
+            return $member["role_id"] != "5" || $member['status'] != "3";
+        });
 
+        if ($_SESSION['user']['role_id'] != '5') {
+            $response->redirect('/login');
+        }
+
+
+        return $this->render('admin', [
+            'members' => $members
+        ]);
+    }
 }

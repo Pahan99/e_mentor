@@ -3,8 +3,8 @@
 
 <h3>Available Resources</h3>
 <br>
-
-<br>
+<a href="/admin" class="btn btn-secondary">Manage users</a>
+<hr>
 <a href="/createresource" class="btn btn-primary"><span class="material-icons">
 add_circle
 </span> Add a new resource</a>

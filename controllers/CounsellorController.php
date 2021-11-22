@@ -31,9 +31,9 @@ class CounsellorController extends MemberController
             $user = new User();
             $user->role_id = $member->getRoleID();
 
-
             $user->loadData($request->getBody());
             $member->loadData($request->getBody());
+
 
 
             $user->status = 1;
@@ -42,7 +42,7 @@ class CounsellorController extends MemberController
                 $member->member_id = $user->getOne(["email" => $user->email])["id"];
 
                 if ($member->save()) {
-                    echo 'Counsellor added';
+
                     $_SESSION['user'] = [
                         'id' => $member->member_id,
                         'name' => $user->name
@@ -80,5 +80,26 @@ class CounsellorController extends MemberController
     function removeMember(Request $request)
     {
         // TODO: Implement removeMember() method.
+    }
+
+    public function add_counsellor(Request $request)
+    {
+        if ($request->isGet()) {
+            return $this->render('add_user');
+        }
+        $role = $request->getBody()["role"];
+        $role_id = $role == "doctor" ? "2" : "4";
+        $userModel = new User();
+        $userModel->role_id = $role_id;
+        $userModel->status = '1';
+
+        $userModel->loadData($request->getBody());
+
+        $counsellorModel = new Counsellor();
+        if ($userModel->save()) {
+            $counsellorModel->member_id = $userModel->getOne(["email" => $userModel->email])["id"];
+            $counsellorModel->save();
+            Application::$app->response->redirect('/admin');
+        }
     }
 }

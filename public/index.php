@@ -30,6 +30,9 @@ $app->router->post('/profile',[UserController::class,'editMember']);
 
 $app->router->get('/mentors','mentors');
 
+// change password
+$app->router->get('/change_password',[UserController::class,'change_password']);
+$app->router->post('/change_password',[UserController::class,'change_password']);
 
 $app->router->get('/resources',[ResourceController::class,'getAllResources']);
 $app->router->get('/resources/edit',[ResourceController::class,'editResource']);
@@ -52,6 +55,17 @@ $app->router->get('/register_mentor',[CounsellorController::class,'registerMembe
 $app->router->post('/register_mentor',[CounsellorController::class,'registerMember']);
 
 $app->router->get('/dashboard',[UserController::class,'searchMember']);
+
+$app->router->get('/admin',[SiteController::class,'admin']);
+$app->router->post('/admin',[SiteController::class,'admin']);
+
+
+$app->router->post('/verify_user',[UserController::class,'verify']);
+$app->router->post('/remove_user',[UserController::class,'delete']);
+$app->router->get('/view_user',[UserController::class,'view']);
+
+$app->router->get('/add_user',[CounsellorController::class,'add_counsellor']);
+$app->router->post('/add_user',[CounsellorController::class,'add_counsellor']);
 
 
 

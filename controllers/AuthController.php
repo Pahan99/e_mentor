@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
@@ -26,6 +27,9 @@ class AuthController extends Controller
                     'name' => $loginResult['user']->name
 
                 ];
+                if ($_SESSION['user']['role_id'] == 5){
+
+                }
                 $response->redirect('/dashboard');
             } else {
                 $response->redirect('/login');
@@ -35,5 +39,10 @@ class AuthController extends Controller
         return $this->render('login');
 
 
+    }
+
+    public function logout(Request $request,Response $response){
+        Application::$app->session->finish();
+        $response->redirect('/');
     }
 }

@@ -42,7 +42,7 @@ class SiteController extends Controller
     {
         $user = new User();
         $members = array_filter($user->getAll(), function ($member) {
-            return $member["role_id"] != "5" || $member['status'] != "3";
+            return ($member["role_id"] != "5" && $member['status'] != "3");
         });
 
         if ($_SESSION['user']['role_id'] != '5') {

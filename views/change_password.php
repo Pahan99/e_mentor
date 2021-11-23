@@ -8,6 +8,12 @@
         <input type="password" name="new_pass" value=""><br><br>
         <label>Confirm Password:</label>
         <input type="password" name="confirm_pass" value=""><br>
-        <button type="submit" class='done_btn'>Done</button>
+        <br>
+
+        <button type="submit" class='btn btn-dark'>Done</button>
+        <br>
+        <br>
+        <a href="/profile" class="btn btn-secondary">back</a>
+
     </form>
 </div>

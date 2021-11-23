@@ -49,27 +49,23 @@
         <div class="form_group">
             <label>Charge per session in LKR:</label>
             <br>
-
             <?php echo '<input type="text" name="name" disabled value=' . $counsellor_data["session_charge"] . ' />' ?>
+            <br>
+        </div>
+        <br><div class="form_group">
+            <label>Session Duration (min):</label>
+            <br>
+            <?php echo '<input type="text" name="name" disabled value=' . $counsellor_data["duration"] . ' />' ?>
+            <br>
+        </div>
+        <br><div class="form_group">
+            <label>Session capacity:</label>
+            <br>
+            <?php echo '<input type="text" name="name" disabled value=' . $counsellor_data["capacity"] . ' />' ?>
             <br>
         </div>
         <br>
 
-<!--        <div class="form_group">-->
-<!--            <label>Duration of a session (in minutes) : </label>-->
-<!--            <br>-->
-<!--            <input type="number" name="duration" disabled --><?php //echo $counsellor_data["duration"]; ?><!--/>-->
-<!---->
-<!--            <br>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--        <div class="form_group">-->
-<!--            <label>Capacity of a session : </label>-->
-<!--            <br>-->
-<!--            <input type="number" name="capacity" --><?php //echo $counsellor_data["capacity"] ?><!--/>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--        <br>-->
 
         <?php endif; ?>
     </div>
@@ -84,4 +80,8 @@
             </button>
         </form>
     <?php endif; ?>
+    <br>
+    <br>
+    <a href="/admin" class="btn btn-secondary">Back</a>
 </div>
+

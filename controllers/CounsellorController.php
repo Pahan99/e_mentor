@@ -34,8 +34,6 @@ class CounsellorController extends MemberController
             $user->loadData($request->getBody());
             $member->loadData($request->getBody());
 
-
-
             $user->status = 1;
 
             if ($user->save()) {
@@ -48,7 +46,7 @@ class CounsellorController extends MemberController
                         'name' => $user->name
                     ];
 
-                    Application::$app->response->redirect('/profile');
+                    Application::$app->response->redirect('/dashboard');
                 }
 
             }

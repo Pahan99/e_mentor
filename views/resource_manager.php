@@ -8,6 +8,10 @@
 <a href="/createresource" class="btn btn-primary"><span class="material-icons">
 add_circle
 </span> Add a new resource</a>
+<br>
+<br>
+<a href="/admin" class="btn btn-secondary">Back</a>
+<br>
 <table class="table">
     <thead class="thead-dark">
     <tr>

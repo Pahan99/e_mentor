@@ -30,7 +30,7 @@ abstract class Model
     public function validateData(): bool
     {
         foreach ($this->getValidationRules() as $attribute => $rules) {
-
+;
             $checked_attr = $this->{$attribute};
             foreach ($rules as $rule) {
                 $checked_rule = $rule;
@@ -58,11 +58,12 @@ abstract class Model
                     $this->addError($attribute, self::RULE_MAX, $rule);
                 }
 
-                if($checked_rule === self::RULE_MATCH && $checked_attr !== $this->{$rule['match']}){
-                    $this->addError($attribute, self::RULE_MATCH, $rule);
-                }
+//                if($checked_rule === self::RULE_MATCH && $checked_attr !== $this->{$rule['match']}){
+//                    $this->addError($attribute, self::RULE_MATCH, $rule);
+//                }
             }
         }
+
         return empty($this->errors);
     }
 

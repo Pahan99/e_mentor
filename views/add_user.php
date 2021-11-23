@@ -30,7 +30,7 @@
         <div class="form_group">
             <label>Contact Number :</label>
             <br>
-            <input type="number" name="contact_no" value=""/>
+            <input type="tel" name="contact_no" value=""/>
         </div>
         <br>
         <div class="form_group">
@@ -45,4 +45,6 @@
         </div>
     </div>
 </form>
-
+<br>
+<br>
+<a href="/admin" class="btn btn-secondary">Back</a>

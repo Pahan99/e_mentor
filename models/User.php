@@ -7,8 +7,8 @@ namespace app\models;
 use app\core\DBModel;
 
 class User extends MemberModel
+
 {
-public string $confirmPassword='';
 
 
     public function getTable(): string

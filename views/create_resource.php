@@ -1,7 +1,3 @@
-<?php
-/**@var $model */
-?>
-
 <h1>Manage resources</h1>
 <h3>Add Resource</h3>
 <br>
@@ -28,10 +24,7 @@
     <label for="title">Enter title</label>
     <br/>
     <input type="text" name="title" id="title"
-           class="form-control<?php echo $model->hasError('title') ? ' is-invalid' : '' ?>"/>
-    <div class="invalid-feedback">
-        <?php echo $model->getFirstError('url') ?>
-    </div>
+           class="form-control<?php echo $model->hasError('url') ? ' is-invalid' : '' ?>"/>
     <br/>
     <br/>
 

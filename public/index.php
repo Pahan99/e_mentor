@@ -916,7 +916,6 @@ $app->router->post('/createresource',[ResourceController::class,'createResource'
 
 $app->router->get('/login',[AuthController::class,'login']);
 $app->router->post('/login',[AuthController::class,'login']);
-
 $app->router->get('/logout',[AuthController::class,'logout']);
 
 $app->router->get('/register_user',[UserController::class,'registerMember']);

@@ -20,6 +20,7 @@ class AuthController extends Controller
             $auth = new Auth();
             $auth->loadData($request->getBody());
             $loginResult = $auth->login();
+            $userModel = new User();
             if ($loginResult['user']) {
                 $_SESSION['user'] = [
                     'id' => $loginResult['user']->id,
@@ -31,18 +32,16 @@ class AuthController extends Controller
                 if ($_SESSION['user']['role_id'] == "5") {
                     $user = new User();
                     $members = array_filter($user->getAll(), function ($member) {
-                        return ($member["role_id"] != "5" && $member['status'] != "3");
+                        return $member["role_id"] != "5" || $member["status"] != "3";
                     });
                     return $this->render('admin', [
                         'members' => $members
                     ]);
 
                 }
-                Application::$app->response->redirect('/dashboard');
+                $response->redirect('/dashboard');
             } else {
-                return $this->render('login', [
-                    "error" => $loginResult['message']
-                ]);
+                $response->redirect('/login');
             }
         }
 

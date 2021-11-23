@@ -42,9 +42,7 @@
             <div class = "form_group">
                 <label>Description :</label>
                 <br>
-                <textarea name="description" id="description" cols="60" rows="10">
-
-                </textarea>
+                <textarea name="description" id="description" cols="60" rows="10"></textarea>
                 <br>
             </div>
             <br>

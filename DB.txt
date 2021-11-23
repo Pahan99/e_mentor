@@ -98,7 +98,7 @@ ALTER TABLE `counsellors` ADD `capacity` INT NOT NULL AFTER `session_charge`;
 ALTER TABLE `counsellors` ADD `duration` INT NOT NULL AFTER `capacity`;
 ALTER TABLE `sessions` ADD `day` VARCHAR(255) NOT NULL AFTER `counsellor_id`;
 ALTER TABLE `sessions` DROP `capacity`, DROP `duration`;
-
+ALTER TABLE `counsellors` DROP `profile_pic`, DROP `rating`;
 
 ALTER TABLE `members` CHANGE `account_detail_id` `account_detail_id` INT(11) NULL DEFAULT NULL;
 

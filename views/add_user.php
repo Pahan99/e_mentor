@@ -30,7 +30,7 @@
         <div class="form_group">
             <label>Contact Number :</label>
             <br>
-            <input type="tel" name="contact_no" value=""/>
+            <input type="tel" name="contact_no" value="" required/>
         </div>
         <br>
         <div class="form_group">

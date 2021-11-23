@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\models\Resource;
@@ -24,10 +25,14 @@ class ResourceController extends Controller
 
             if ($resourceModel->validateData() && $resourceModel->create()) {
 
-                header('location:/resources');
+                Application::$app->response->redirect('/resources');
             }
 
-            header('location:/resources');
+           return $this->render(
+               'create_resource',[
+                   "model"=>$resourceModel
+               ]
+           );
 
         }
         return $this->render('create_resource', [

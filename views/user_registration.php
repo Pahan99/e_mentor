@@ -1,41 +1,43 @@
+<?php
+/**@var $model */
+?>
 <h1>Register as User</h1>
 <br>
 
 <form action="" method="post">
     <div class="col-md-6">
-        <div class="form_group">
+        <div class="form-group">
             <label>Full Name :</label>
-            <br>
-            <input type="text" name="name" value="" required/>
-            <br>
+            <br/>
+            <input type="text" name="name" required/>
         </div>
         <br>
 
-        <div class="form_group">
+        <div class="form-group">
             <label>Email :</label>
             <br>
-            <input type="text" name="email" value="" required/>
+            <input type="text" name="email" required />
         </div>
         <br>
-        <div class="form_group">
+        <div class="form-group">
             <label>Contact Number :</label>
             <br>
-            <input type="number" name="contact_no" value=""/>
+            <input type="tel" name="contact_no" required/>
         </div>
         <br>
-        <div class="form_group">
+        <div class="form-group">
             <label>Password :</label>
             <br>
-            <input type="password" name="password" value="" required/>
+            <input type="password" name="password" required />
         </div>
         <br>
-        <div class="form_group">
+        <div class="form-group">
             <label>Confirm Password :</label>
             <br>
-            <input type="password" name="confirm_pwd" value="" required/>
+            <input type="password" name="confirm_pwd" required />
         </div>
         <br>
-        <div class="SubmitButton">
+        <div class="form-group">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>

@@ -31,10 +31,8 @@ class CounsellorController extends MemberController
             $user = new User();
             $user->role_id = $member->getRoleID();
 
-
             $user->loadData($request->getBody());
             $member->loadData($request->getBody());
-
 
             $user->status = 1;
 
@@ -42,13 +40,13 @@ class CounsellorController extends MemberController
                 $member->member_id = $user->getOne(["email" => $user->email])["id"];
 
                 if ($member->save()) {
-                    echo 'Counsellor added';
+
                     $_SESSION['user'] = [
                         'id' => $member->member_id,
                         'name' => $user->name
                     ];
 
-                    Application::$app->response->redirect('/profile');
+                    Application::$app->response->redirect('/dashboard');
                 }
 
             }
@@ -99,7 +97,7 @@ class CounsellorController extends MemberController
         if ($userModel->save()) {
             $counsellorModel->member_id = $userModel->getOne(["email" => $userModel->email])["id"];
             $counsellorModel->save();
-           Application::$app->response->redirect('/admin');
+            Application::$app->response->redirect('/admin');
         }
     }
 }

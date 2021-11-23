@@ -19,7 +19,7 @@ class Router
         $this->response = $response;
     }
 
-// routes =[ 'get'=>['/'=func],'post'=>[]]
+
     public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;

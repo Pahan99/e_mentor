@@ -96,8 +96,8 @@ class CounsellorController extends MemberController
         $counsellorModel = new Counsellor();
         if ($userModel->save()) {
             $counsellorModel->member_id = $userModel->getOne(["email" => $userModel->email])["id"];
-            $counsellorModel->save();
-            Application::$app->response->redirect('/admin');
+            if ($counsellorModel->save()) {
+                Application::$app->response->redirect('/admin');
+            }
         }
-    }
-}
+    }}

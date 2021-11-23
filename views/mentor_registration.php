@@ -64,7 +64,7 @@
             </div>
             <br>
             <div class = "form_group">
-                <label>Capacity of a session : </label>
+                <label>Capacity : </label>
                 <br>
                 <input type = "number" name = "capacity"  />
                 <br>

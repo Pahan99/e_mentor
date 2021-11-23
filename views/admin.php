@@ -19,7 +19,7 @@
 
     foreach ($members as $i => $member): ?>
         <tr>
-            <td><?php echo $i + 1 ?></td>
+            <td><?php echo $i ?></td>
             <td><?php echo $member['name']; ?></td>
             <?php
             $role_id = $member['role_id'];
